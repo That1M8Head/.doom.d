@@ -52,3 +52,4 @@
 (package! pandoc-mode)
 (package! org-bullets)
 (package! org-appear)
+(package! evil-tutor)

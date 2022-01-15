@@ -52,9 +52,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how they are implemented.
 
-;; Tab bar mode
-(tab-bar-mode t)
-
 ;; Org hooks
 (add-hook 'org-mode-hook 'org-bullets-mode)
 (add-hook 'org-mode-hook 'pandoc-mode)
@@ -63,16 +60,6 @@
 (map! :leader
       :desc "Quit Doom in a funny way"
       "c y a" #'save-buffers-kill-terminal)
-
-;; Tab bar shortcuts
-(global-set-key (kbd "C-x t j") 'tab-bar-switch-to-prev-tab)
-(global-set-key (kbd "C-x t k") 'tab-bar-switch-to-next-tab)
-(map! :leader
-      :desc "Open a new tab"
-      "t t" #'tab-bar-new-tab)
-(map! :leader
-      :desc "Close current tab"
-      "t k" #'tab-bar-close-tab)
 
 ;; C indentation
 (setq c-default-style "linux"
