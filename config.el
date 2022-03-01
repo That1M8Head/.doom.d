@@ -19,13 +19,13 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Cascadia Code" :size 14)
+      doom-variable-pitch-font (font-spec :family "sans" :size 15))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-dracula)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -52,10 +52,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how they are implemented.
 
-;; Org hooks
-(add-hook 'org-mode-hook 'org-bullets-mode)
-(add-hook 'org-mode-hook 'pandoc-mode)
-
 ;; Funny quit shortcut
 (map! :leader
       :desc "Quit Doom in a funny way"
@@ -74,3 +70,21 @@
 ;; Hide emphasis markers and use org-appear
 (setq org-hide-emphasis-markers t)
 (add-hook 'org-mode-hook 'org-appear-mode)
+
+;; Centaur tabs style
+(setq centaur-tabs-style "rounded")
+
+;; dmenu keybind
+(map! :leader
+      :desc "dmenu"
+      "d" #'dmenu)
+
+;; EXWM
+(setq-default exwm-replace 'nil)
+(defun exwm-custom-init-stuff ()
+  "Runs stuff when EXWM starts."
+  (call-process "/bin/bash" "~/.doom.d/exwm-init-script.sh")
+  (message "EXWM custom init stuff loaded!"))
+(add-hook 'exwm-init-hook 'exwm-custom-init-stuff)
+(require 'exwm)
+(exwm-enable)

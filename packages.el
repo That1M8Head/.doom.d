@@ -50,6 +50,7 @@
 ;(unpin! t)
 
 (package! pandoc-mode)
-(package! org-bullets)
 (package! org-appear)
 (package! evil-tutor)
+(package! dmenu)
+(package! exwm)
