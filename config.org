@@ -1,41 +1,77 @@
+#+TITLE: Doom Emacs literate config
+
+* My info
+#+begin_src elisp
 (setq user-full-name "Arsalan Kazmi"
       user-mail-address "sonicspeed848@gmail.com")
-
+#+end_src
+* Appearance
+** Font
+#+begin_src elisp
 (setq doom-font (font-spec :family "Cascadia Code" :size 14)
       doom-variable-pitch-font (font-spec :family "sans" :size 15))
-
+#+end_src
+** Theme
+#+begin_src elisp
 (setq doom-theme 'doom-dracula)
-
+#+end_src
+** Line numbers
+#+begin_src elisp
 (setq display-line-numbers-type t)
-
+#+end_src
+** Indentation
+#+begin_src elisp
 (setq c-default-style "linux"
       c-basic-offset 4)
 (setq tab-width 4)
-
+#+end_src
+** Clock
+#+begin_src elisp
 (display-time-mode t)
-
+#+end_src
+** Centaur tabs
+#+begin_src elisp
 (setq centaur-tabs-style "rounded")
-
+#+end_src
+* Org
+** Directory
+#+begin_src elisp
 (setq org-directory "~/org/")
-
+#+end_src
+** Emphasis markers
+This hides emphasis markers like =*bold*=, =/italic/= and =_underline_= and only shows them when the cursor hovers over them.
+#+begin_src elisp
 (setq org-hide-emphasis-markers t)
 (add-hook 'org-mode-hook 'org-appear-mode)
+#+end_src
+* Key bindings
+** Funny quit command
+This command requires the user to type =<SPC>cya= to quit Emacs.
 
+As in, press the =Space= key, then type "cya", as if you're saying "cya" or "see you" to Emacs.
+#+begin_src elisp
 (map! :leader
       :desc "Quit Doom in a funny way"
       "c y a" #'save-buffers-kill-terminal)
-
+#+end_src
+** dmenu
+This is just for when I use EXWM.
+#+begin_src elisp
 (map! :leader
       :desc "dmenu"
       "d" #'dmenu)
-
+#+end_src
+** Tab switching
+#+begin_src elisp
 (map! :leader
       :desc "Left tab"
       "[" #'centaur-tabs-backward-tab)
 (map! :leader
       :desc "Right tab"
       "]" #'centaur-tabs-forward-tab)
-
+#+end_src
+* EXWM
+#+begin_src elisp
 (setq-default exwm-replace 'nil)
 (defun exwm-custom-init-stuff ()
   "Runs stuff when EXWM starts."
@@ -44,3 +80,4 @@
 (add-hook 'exwm-init-hook 'exwm-custom-init-stuff)
 (require 'exwm)
 (exwm-enable)
+#+end_src
