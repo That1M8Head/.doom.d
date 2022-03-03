@@ -88,6 +88,7 @@ This allows for easy tab switching with [[https://github.com/ema2159/centaur-tab
       "]" #'centaur-tabs-forward-tab)
 #+end_src
 ** i3wm-inspired
+These shortcuts use the Victory[fn:1] key in a similar fashion to the i3 window manager.
 #+begin_src elisp
 (map! "s-d" #'dmenu
       "<s-return>" #'+vterm/toggle
@@ -112,3 +113,5 @@ When EXWM is loaded, a shell script is executed to set stuff like a compositor a
 (require 'exwm)
 (exwm-enable)
 #+end_src
+
+[fn:1] The Victory key is what I call the Super or Windows key.
