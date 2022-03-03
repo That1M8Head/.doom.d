@@ -1,4 +1,5 @@
 #+TITLE: Doom Emacs literate config
+ #+options: \n:t
 
 * My info
 #+begin_src elisp
@@ -7,34 +8,36 @@
 #+end_src
 * Appearance
 ** Font
+Set the monospace and variable fonts.
 #+begin_src elisp
 (setq doom-font (font-spec :family "Cascadia Code" :size 14)
       doom-variable-pitch-font (font-spec :family "sans" :size 15))
 #+end_src
 ** Theme
+Set the theme. Obviously.
 #+begin_src elisp
 (setq doom-theme 'doom-dracula)
 #+end_src
 ** Line numbers
+Use normal line numbers. Relative confuses me.
 #+begin_src elisp
 (setq display-line-numbers-type t)
 #+end_src
 ** Indentation
+GNU style indentation just feels off to me.
 #+begin_src elisp
 (setq c-default-style "linux"
       c-basic-offset 4)
 (setq tab-width 4)
 #+end_src
 ** Clock
+Display a clock in the modeline.
 #+begin_src elisp
 (display-time-mode t)
 #+end_src
-** Centaur tabs
-#+begin_src elisp
-(setq centaur-tabs-style "rounded")
-#+end_src
 * Org
 ** Directory
+Agenda stuff will go here, I guess.
 #+begin_src elisp
 (setq org-directory "~/org/")
 #+end_src
@@ -61,7 +64,6 @@ Increase the font for headings, title and info, change ellipsis to downward tria
 * Key bindings
 ** Funny quit command
 This command requires the user to type =<SPC>cya= to quit Emacs.
-
 As in, press the =Space= key, then type "cya", as if you're saying "cya" or "see you" to Emacs.
 #+begin_src elisp
 (map! :leader
@@ -76,6 +78,7 @@ This is just for when I use EXWM.
       "d" #'dmenu)
 #+end_src
 ** Tab switching
+This allows for easy tab switching with [[https://github.com/ema2159/centaur-tabs][Centaur Tabs]].
 #+begin_src elisp
 (map! :leader
       :desc "Left tab"
@@ -86,10 +89,19 @@ This is just for when I use EXWM.
 #+end_src
 ** i3wm-inspired
 #+begin_src elisp
-(bind-key (kbd "s-d") #'dmenu)
-(bind-key (kbd "<s-return>") #'+vterm/toggle)
+(map! "s-d" #'dmenu
+      "<s-return>" #'+vterm/toggle
+      "s-h" #'evil-window-left
+      "s-j" #'evil-window-down
+      "s-k" #'evil-window-up
+      "s-l" #'evil-window-right
+      "s-H" #'evil-window-move-left
+      "s-J" #'evil-window-move-down
+      "s-K" #'evil-window-move-up
+      "s-L" #'evil-window-move-right)
 #+end_src
 * EXWM
+When EXWM is loaded, a shell script is executed to set stuff like a compositor and a background.
 #+begin_src elisp
 (setq-default exwm-replace 'nil)
 (defun exwm-custom-init-stuff ()

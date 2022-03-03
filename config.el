@@ -14,8 +14,6 @@
 
 (display-time-mode t)
 
-(setq centaur-tabs-style "rounded")
-
 (setq org-directory "~/org/")
 
 (setq org-hide-emphasis-markers t)
@@ -47,8 +45,16 @@
       :desc "Right tab"
       "]" #'centaur-tabs-forward-tab)
 
-(bind-key (kbd "s-d") #'dmenu)
-(bind-key (kbd "<s-return>") #'+vterm/toggle)
+(map! "s-d" #'dmenu
+      "<s-return>" #'+vterm/toggle
+      "s-h" #'evil-window-left
+      "s-j" #'evil-window-down
+      "s-k" #'evil-window-up
+      "s-l" #'evil-window-right
+      "s-H" #'evil-window-move-left
+      "s-J" #'evil-window-move-down
+      "s-K" #'evil-window-move-up
+      "s-L" #'evil-window-move-right)
 
 (setq-default exwm-replace 'nil)
 (defun exwm-custom-init-stuff ()
